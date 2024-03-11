@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(private tokenService: TokenService) {}
   ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
+    //
   }
 
   ngOnInit(): void {
@@ -31,7 +31,8 @@ export class AppComponent implements OnInit, AfterViewInit {
       error: (error: any) => console.error('Failed to fetch token:', error),
     });
   }
-  
+
+
   setCustomerId() {
     this.updateSuperblocksEmbed();
   }
