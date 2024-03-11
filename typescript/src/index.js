@@ -22,7 +22,6 @@ window.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const data = yield response.json();
                 token = data.access_token;
-                console.log("Token:", token);
                 createEmbed();
             }
             else {

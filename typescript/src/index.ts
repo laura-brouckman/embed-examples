@@ -14,7 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const data = await response.json();
                 token = data.access_token;
-                console.log("Token:", token);
                 createEmbed();
             } else {
                 console.error("Response was not OK or was empty", response);

@@ -14,7 +14,6 @@ function App() {
         );
         if (response.ok) {
           const data = await response.json();
-          console.log("DATA IS ", data);
           setToken(data.access_token);
         } else {
           // Handle empty or invalid responses here

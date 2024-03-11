@@ -44,7 +44,6 @@ app.get("/api/superblocks/token", async (req, res) => {
         })
         .then(token => res.json(token))
         .catch(err => {
-            console.log("ERROR IS ", err);
             res.status(500).json({error: "Superblocks Auth Failed"});
         })
 
