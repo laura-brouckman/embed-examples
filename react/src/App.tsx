@@ -56,7 +56,10 @@ function App() {
             "Loading..."
           ) : (
             <SuperblocksEmbed
-              src="https://app.superblocks.com/embed/applications/:APP_ID"
+              src={
+                process.env.REACT_APP_SRC ??
+                "https://app.superblocks.com/embed/applications/:APP_ID"
+              }
               properties={properties}
               token={token ?? undefined}
               colorScheme={colorScheme}
