@@ -3,10 +3,15 @@ import "./App.css";
 import { SuperblocksEmbed } from "@superblocksteam/embed-react";
 
 function App() {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState();
   const [customerId, setCustomerId] = useState("");
   const [properties, setProperties] = useState({ customerId });
+  const [colorScheme, setColorScheme] = useState<"light" | "dark">("light");
+  const noToken = process.env.REACT_APP_NO_TOKEN === "true";
+  console.log(process.env.REACT_APP_NO_TOKEN);
+
   useEffect(() => {
+    if (noToken) return;
     const fetchToken = async () => {
       try {
         const response = await fetch(
@@ -24,7 +29,8 @@ function App() {
       }
     };
     fetchToken();
-  }, []);
+  }, [noToken]);
+
   return (
     <div className="App">
       <header className="App-header">Superblocks Embedding Example</header>
@@ -37,15 +43,23 @@ function App() {
           <button onClick={() => setProperties({ customerId })}>
             Set Customer ID
           </button>
+          <button
+            onClick={() =>
+              setColorScheme(colorScheme === "light" ? "dark" : "light")
+            }
+          >
+            Toggle Color Scheme
+          </button>
         </div>
         <div className="embed-wrapper">
-          {token == null ? (
+          {token == null && !noToken ? (
             "Loading..."
           ) : (
             <SuperblocksEmbed
-              src="YOUR_APP_EMBED_URL_HERE"
+              src="https://app.superblocks.com/embed/applications/:APP_ID"
               properties={properties}
-              token={token}
+              token={token ?? undefined}
+              colorScheme={colorScheme}
             />
           )}
         </div>
